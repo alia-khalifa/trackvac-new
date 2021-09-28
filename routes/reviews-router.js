@@ -11,7 +11,7 @@ router.get('/reviews', catchAsync(CityCtrl.getCities))
     .post('/reviews/validation', catchAsync(UserCtrl.validateUser))
     .get('/reviews/:cityID', catchAsync(PlaceCtrl.getPlaces))
     .get('/reviews/:cityID/:placeID', catchAsync(ReviewCtrl.getReviews))
-    .post('/reviews/:placeID', catchAsync(UserCtrl.validateUser)ad, catchAsync(ReviewCtrl.createReview))
+    .post('/reviews/:placeID', catchAsync(UserCtrl.validateUser), catchAsync(ReviewCtrl.createReview))
     .put('/reviews/vote/:reviewID', catchAsync(ReviewCtrl.updateVote))
     .put('/reviews/report/:reviewID', catchAsync(ReviewCtrl.updateReport));
 
