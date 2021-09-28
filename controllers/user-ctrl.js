@@ -3,11 +3,7 @@ const User = require('../models/user');
 validateUser = async (req, res) => {
     try {
         if (req.session.isVaccine) {
-            res.send({
-                success: true,
-                message: 'Took vaccine',
-            });
-            next();
+            return next();
         }
         const { vacID, nationalID } = req.body;
         if (!vacID || !nationalID) {
