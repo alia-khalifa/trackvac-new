@@ -9,7 +9,7 @@ You should install mongo DB and get it to run
 
 To get the fake DB run in this order:
 
-1) cd server/utils
+1) cd utils
 2) node citiesDB.js
 3) node fakeReviews.js
 4) node fakeQuestions.js
