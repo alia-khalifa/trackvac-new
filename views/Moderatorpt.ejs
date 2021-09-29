@@ -454,13 +454,18 @@
                 <label for="Governorate" style="margin-left: 300px;  font-size: 25px;"><strong>Choose a Governorate:
                     </strong></label>
                 <select name="Governorate" id="GovernorateDelete" style="width: 400px;" onChange="deletePlaces(event)">
-                    <option value="" selected>Please Choose a City</option>
+                    <option value="null" selected>Please Choose a City</option>
                     <% for(let i=0;i<adminReturn.cities.length;i++){%>
                         <option value="<%=adminReturn.cities[i]._id%>">
                             <%=adminReturn.cities[i].name%>
                         </option>
                         <% } %>
                 </select>
+                <div>
+                    <input type="text" style="width: 150px; align-self: center;" class='form-control' name="s"
+                        id="form-control_1" value="" />
+                    <button class="btn btn-info" onClick="searchReturnDiv()" style="align-self: center;">Search</button>
+                </div>
 
                 <!-- Start Blog item #1-->
                 <div id="deleteCenter">
@@ -491,7 +496,7 @@
                         <div class="col-md-3">
                             <label for="City" , class="write" style="color: #276678;">Governorates</label>
                             <select name="Governorate" id="City" style="color:cadetblue" onChange="updateDB(event)">
-                                <option value="" selected>Please Choose a Governorate</option>
+                                <option value="null" selected>Please Choose a Governorate</option>
                                 <% for(let i=0;i<adminReturn.cities.length;i++){%>
                                     <option value="<%=adminReturn.cities[i]._id%>">
                                         <%=adminReturn.cities[i].name%>
@@ -503,7 +508,7 @@
                         <div class="col-md-3">
                             <label for="Place" , class="write" style="color: #276678;">Districts</label>
                             <select name="Governorate" id="Place" style="color:cadetblue" onChange="updateBoxes(event)">
-                                <option value="" selected>Please Choose a District</option>
+                                <option value="null" selected>Please Choose a District</option>
                             </select>
 
                         </div>
@@ -517,7 +522,12 @@
                         </div>
 
                         <br>
-
+                        <div>
+                            <input type="text" class='form-control' name="s" id="form-control"
+                                style="width: 150px; align-self: center;" value="" />
+                            <button class="btn btn-info" onClick="searchArr('Place')"
+                                style="align-self: center;">Search</button>
+                        </div>
 
                         <div class="col-md-12 text-right">
                             <button type="submit" class="button1" onClick='editCenter()'>Edit Center</button>
@@ -576,7 +586,7 @@
                         <label for="Governorate" , class="write" style="color: #276678; ">Governorate</label>
                         <select name="Governorate" id="GovernorateDelete" style="color:cadetblue"
                             onChange="updateCityID(event)">
-                            <option value="" selected>Please Choose a City</option>
+                            <option value="null" selected>Please Choose a City</option>
                             <% for(let i=0;i<adminReturn.cities.length;i++){%>
                                 <option value="<%=adminReturn.cities[i]._id%>">
                                     <%=adminReturn.cities[i].name%>
@@ -663,11 +673,13 @@
             reqPlaces.send(null);
             const reqDiv = document.getElementById('deleteCenter');
 
-            if (event.target.value == '') {
+            if (event.target.value == 'null') {
                 while (reqDiv.firstChild) {
                     reqDiv.firstChild.remove();
                 }
-                return null;
+            }
+            if (event.target.value == 'null') {
+                return;
             }
 
             async function myfunction() {
@@ -766,6 +778,7 @@
                     }
                     const tmpOption = document.createElement('option');
                     tmpOption.setAttribute('Selected', true);
+                    tmpOption.setAttribute('value', 'null');
                     tmpOption.innerHTML = 'Please Choose a Place';
 
                     dropBox.appendChild(tmpOption);
@@ -872,6 +885,125 @@
         function updateCityID(event) {
             const tmpSpan = document.getElementById('globalCity');
             tmpSpan.setAttribute('class', `${event.target.value}`);
+        }
+    </script>
+
+    <script>
+        async function searchArr(dropBox) {
+
+            const searchPlaces = new XMLHttpRequest();
+            const url = 'http://localhost:3000/trackvac-api/admin/placesarr';
+            searchPlaces.onreadystatechange = myfunction;
+            searchPlaces.open("GET", url, true);
+            searchPlaces.send(null);
+
+            const reqSec = document.getElementById(dropBox);
+
+            while (reqSec.firstChild) {
+                reqSec.firstChild.remove();
+            }
+
+            async function myfunction() {
+                if (searchPlaces.readyState == 4) {
+                    let res = await searchPlaces.responseText;
+                    res = JSON.parse(res);
+                    if (res[0].name) {
+                        const textHolder = document.getElementById('form-control');
+
+                        const suggestedPlaces = res.filter((el) => {
+                            if ((el.name).includes(textHolder.value)) {
+                                return el;
+                            }
+                        });
+
+                        const dump = document.createElement('option');
+                        dump.setAttribute('selected', true);
+                        dump.setAttribute('value', 'null');
+                        dump.innerHTML = 'Please Choose a District';
+                        reqSec.appendChild(dump);
+
+                        for (let i = 0; i < suggestedPlaces.length; i++) {
+                            const tmpOpt = document.createElement('option');
+                            tmpOpt.setAttribute('value', `${suggestedPlaces[i].id}`);
+                            tmpOpt.innerHTML = suggestedPlaces[i].name;
+                            reqSec.appendChild(tmpOpt);
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
+
+    <script>
+        async function searchReturnDiv() {
+            const searchPlaces = new XMLHttpRequest();
+            const url = 'http://localhost:3000/trackvac-api/admin/placesarr';
+            searchPlaces.onreadystatechange = myfunction;
+            searchPlaces.open("GET", url, true);
+            searchPlaces.send(null);
+
+            const reqDiv = document.getElementById('deleteCenter');
+
+            while (reqDiv.firstChild) {
+                reqDiv.firstChild.remove();
+            }
+
+            async function myfunction() {
+                if (searchPlaces.readyState == 4) {
+                    let res = await searchPlaces.responseText;
+                    res = JSON.parse(res);
+
+                    if (res[0].name) {
+                        const textHolder = document.getElementById('form-control_1');
+
+                        const suggestedPlaces = res.filter((el) => {
+                            if ((el.name).includes(textHolder.value)) {
+                                return el;
+                            }
+                        });
+
+                        for (let i = 0; i < suggestedPlaces.length; i++) {
+                            const tmpDiv = document.createElement('div');
+                            tmpDiv.setAttribute('class', 'col-md-4');
+
+                            const tmpDiv_2 = document.createElement('div');
+                            tmpDiv_2.setAttribute('class', 'blog-post');
+
+                            const tmpDiv_3 = document.createElement('div');
+                            tmpDiv_3.setAttribute('class', 'post-media');
+
+                            const tmpDiv_4 = document.createElement('div');
+                            tmpDiv_3.setAttribute('class', 'post-desc');
+
+                            const image = document.createElement('img');
+                            image.setAttribute('src', '/images/testimonials.jpg');
+
+                            const h = document.createElement('h4');
+                            h.innerHTML = `${suggestedPlaces[i].name}`;
+
+                            const btn = document.createElement('button');
+                            btn.setAttribute('type', 'submit');
+                            btn.setAttribute('class', 'button1');
+                            btn.setAttribute('onClick', 'deleteSelf(this)');
+                            btn.setAttribute('id', `http://localhost:3000/trackvac-api/admin/place/${suggestedPlaces[i].id}?_method=DELETE`)
+                            btn.innerHTML = 'Delete Center';
+
+                            tmpDiv_3.appendChild(image);
+
+                            tmpDiv_4.appendChild(h);
+                            tmpDiv_4.appendChild(btn);
+
+                            tmpDiv_2.appendChild(tmpDiv_3);
+                            tmpDiv_2.appendChild(tmpDiv_4);
+
+                            tmpDiv.appendChild(tmpDiv_2);
+
+                            reqDiv.appendChild(tmpDiv);
+                        }
+                    }
+                }
+            }
         }
     </script>
 

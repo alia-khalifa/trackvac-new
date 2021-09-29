@@ -10,6 +10,7 @@ const router = express.Router();
 router.get('/admin/login', catchAsync(AdminCtrl.logIn))
     .get('/admin/logut', catchAsync(AdminCtrl.logOut))
     .get('/admin/addadmin', catchAsync(AdminCtrl.validateLogin), catchAsync(AdminCtrl.addform))
+    .get('/admin/placesarr', catchAsync(AdminCtrl.validateLogin), catchAsync(AdminCtrl.placesArray))
     .post('/admin/addadmin', catchAsync(AdminCtrl.validateLogin), catchAsync(AdminCtrl.addadmin))
     .get('/admin/home', catchAsync(AdminCtrl.validateLogin), catchAsync(AdminCtrl.home))
     .get('/admin/questions', catchAsync(AdminCtrl.validateLogin), catchAsync(AdminCtrl.questionsFeedback))

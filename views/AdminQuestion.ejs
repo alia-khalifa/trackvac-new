@@ -52,7 +52,7 @@
     <h1 class="page-title">Questions</h1>
     <label for="Governorate" style="font-size: 20px;">Choose a Governorate:</label>
     <select name="Governorate" id="GovernorateDelete" style="width: 175px; height: 30px;" onChange="reqPlaces(event)">
-      <option value="" selected>Please Choose a City</option>
+      <option value="null" selected>Please Choose a City</option>
       <% for(let i=0;i<cities.length;i++){%>
         <option value="<%=cities[i]._id%>">
           <%=cities[i].name%>
@@ -61,7 +61,7 @@
     </select>
     <label for="Governorate" style="font-size: 20px;">Choose a District:</label>
     <select name="Governorate" id="PlaceDelete" style="width: 175px; height: 30px" onChange="updateDB(event)">
-      <option value="" selected>Please Choose a District</option>
+      <option value="null" selected>Please Choose a District</option>
     </select>
     <br><br>
     <!-- BEGIN left sidebar -->
@@ -69,10 +69,8 @@
       <div class="box">
         <h2><i class="fa fa-search" aria-hidden="true"></i> Search Questions</h2>
         <div>
-          <form action="" id="searchform">
-            <input type="text" class='form-control' name="s" id="s" value="" />
-            <button type="submit">Go</button>
-          </form>
+          <input type="text" class='form-control' name="s" id="form-control" value="" />
+          <button onClick="searchArr(event)">Search</button>
         </div>
       </div>
     </div>
@@ -116,11 +114,14 @@
       reqPlaces.send(null);
       const reqSec = document.getElementById('PlaceDelete');
 
-      if (event.target.value == '') {
+      if (event.target.value == 'null') {
         while (reqSec.firstChild) {
           reqSec.firstChild.remove();
         }
-        return null;
+      }
+
+      if (event.target.value == 'null') {
+        return;
       }
 
       async function myfunction() {
@@ -135,6 +136,7 @@
 
           const dump = document.createElement('option');
           dump.setAttribute('selected', true);
+          dump.setAttribute('value', 'nill');
           dump.innerHTML = 'Please Choose a District';
           reqSec.appendChild(dump);
 
@@ -241,6 +243,59 @@
     }
   </script>
 
+  <script>
+    async function searchArr(event) {
+      event.preventDefault();
+
+      const searchPlaces = new XMLHttpRequest();
+      const url = 'http://localhost:3000/trackvac-api/admin/placesarr';
+      searchPlaces.onreadystatechange = myfunction;
+      searchPlaces.open("GET", url, true);
+      searchPlaces.send(null);
+
+      const reqSec = document.getElementById('PlaceDelete');
+
+      while (reqSec.firstChild) {
+        reqSec.firstChild.remove();
+      }
+
+      async function myfunction() {
+        if (searchPlaces.readyState == 4) {
+          let res = await searchPlaces.responseText;
+          res = JSON.parse(res);
+          if (res[0].name) {
+            const textHolder = document.getElementById('form-control');
+
+            const suggestedPlaces = res.filter((el) => {
+              if ((el.name).includes(textHolder.value)) {
+                return el;
+              }
+            });
+
+            const reqSec = document.getElementById('PlaceDelete');
+
+            while (reqSec.firstChild) {
+              reqSec.firstChild.remove();
+            }
+
+            const dump = document.createElement('option');
+            dump.setAttribute('selected', true);
+            dump.setAttribute('value', 'null');
+            dump.innerHTML = 'Please Choose a District';
+            reqSec.appendChild(dump);
+
+            for (let i = 0; i < suggestedPlaces.length; i++) {
+              const tmpOpt = document.createElement('option');
+              tmpOpt.setAttribute('value', `${suggestedPlaces[i].id}`);
+              tmpOpt.innerHTML = suggestedPlaces[i].name;
+              reqSec.appendChild(tmpOpt);
+            }
+          }
+        }
+      }
+    }
+
+  </script>
 
 </body>
 

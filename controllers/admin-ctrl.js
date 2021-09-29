@@ -4,6 +4,21 @@ const Place = require('../models/place');
 const Review = require('../models/review');
 const Question = require('../models/question');
 
+placesArray = async (req, res) => {
+
+    const allPlaces = await Place.find();
+    const placesArr = [];
+
+    for (let i = 0; i < allPlaces.length; i++) {
+        const tmpPlace = {
+            id: allPlaces[i]._id,
+            name: allPlaces[i].name
+        }
+        placesArr.push(tmpPlace);
+    }
+    return res.send(placesArr);
+}
+
 logIn = async (req, res) => {
     try {
         return res.render('AdminLogin');
@@ -234,5 +249,6 @@ module.exports = {
     home,
     questionsFeedback,
     reviewsFeedback,
-    validateLogin
+    validateLogin,
+    placesArray
 };
