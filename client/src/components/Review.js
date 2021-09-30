@@ -97,7 +97,8 @@ export default class Review extends Component {
 
     }
     render() {
-        const { vote, lang } = this.props
+        const { lang } = this.props
+        const { upVoted, downVoted, vote } = this.state
         return (
             <div className="review" style={{ padding: "10px 10px 10px 10px" }}>
 
@@ -105,10 +106,10 @@ export default class Review extends Component {
 
 
                 <div className="upvote">
-                    <ArrowUpwardIcon onClick={this.handleUpvote.bind(this)} className="arrow" />
+                    <ArrowUpwardIcon style={{ color: upVoted ? "#276678" : "gray" }} onClick={this.handleUpvote.bind(this)} className="arrow" />
                     <p>{vote ? vote : 0}</p>
                     <p>{lang ? "vote" : "تصويت "}</p>
-                    <ArrowDownwardIcon onClick={this.handleDownvote.bind(this)} className="arrow" />
+                    <ArrowDownwardIcon style={{ color: downVoted ? "#276678" : "gray" }} onClick={this.handleDownvote.bind(this)} className="arrow" />
                 </div>
 
 

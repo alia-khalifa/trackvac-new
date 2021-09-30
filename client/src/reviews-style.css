@@ -257,7 +257,7 @@ img {
 }
 
 .arrow {
-  color: gray !important ;
+  color: gray;
 }
 
 .arrow:hover {

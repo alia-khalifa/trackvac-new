@@ -172,16 +172,16 @@ export default class Question extends Component {
 
 
     render() {
-        const { replies } = this.state
+        const { replies, upVoted, downVoted } = this.state
         const { lang } = this.props
         return (
             <div className="question" style={{ padding: "10px 10px 0px 10px" }}>
                 <div className="question-body" style={{ marginBottom: "5px" }} >
                     <div className="upvote">
-                        <ArrowUpwardIcon onClick={this.handleUpvote.bind(this)} className="arrow" />
+                        <ArrowUpwardIcon style={{ color: upVoted ? "#276678" : "gray" }} onClick={this.handleUpvote.bind(this)} className="arrow" />
                         <p>{this.props.vote ? this.props.vote : 0}</p>
                         <p>{lang ? "vote" : "تصويت "}</p>
-                        <ArrowDownwardIcon onClick={this.handleDownvote.bind(this)} className="arrow" />
+                        <ArrowDownwardIcon style={{ color: downVoted ? "#276678" : "gray" }} onClick={this.handleDownvote.bind(this)} className="arrow" />
                     </div>
                     <h3> {this.props.body} </h3>
                 </div>
