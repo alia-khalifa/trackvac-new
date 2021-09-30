@@ -68,7 +68,7 @@ export default class Reviews extends Component {
         disInputValue: "",
         govText: "",
         disText: "",
-        lang: false
+        lang: true
 
     }
     handleTitleChange(event) {
@@ -241,15 +241,14 @@ export default class Reviews extends Component {
             disInputValue: district
         })
         if (district) {
-            await api.getAllReviews(this.state.governorate, district.id).then(reviewsArr => {
-
+            await api.getAllReviews(this.state.governorate || 'cityID', district.id).then(reviewsArr => {
                 this.setState({
                     reviews: reviewsArr.data,
                 });
             }).catch(e => {
                 console.log('There has been a problem with your fetch operation: ' + e.message);
             });
-            await api.getAllQuestions(this.state.governorate, district.id).then(questionsArr => {
+            await api.getAllQuestions(this.state.governorate || 'cityID', district.id).then(questionsArr => {
                 this.setState({
                     district: district,
                     questions: questionsArr.data
@@ -351,7 +350,17 @@ export default class Reviews extends Component {
             console.log('There has been a problem with your fetch operation: ' + e.message);
         });
     }
-
+    handleLang() {
+        if (this.state.lang) {
+            this.setState({
+                lang: false
+            })
+        } else {
+            this.setState({
+                lang: true
+            })
+        }
+    }
     render() {
         const { questions, reviews, cities, districts, lang } = this.state
         return (
@@ -359,7 +368,7 @@ export default class Reviews extends Component {
                 <header>
                     {/* this shouldnt be here remember to take it out !!!! */}
                     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
-                    <NavBar />
+                    <NavBar lang={lang} handleLang={this.handleLang.bind(this)} />
                 </header>
                 <body>
 
@@ -439,7 +448,7 @@ export default class Reviews extends Component {
                                 <div className="list" >
                                     {(!this.state.isReview) ?
                                         (<div>
-                                            {(questions && questions.length !== 0 ) ? (questions).map((q) => (
+                                            {(questions && questions.length !== 0) ? (questions).map((q) => (
                                                 <Question lang={this.state.lang} onVoteChange={(id, votes, isQ) => { this.handleVoteChange(id, votes, isQ) }} body={q.body} _id={q._id} vote={q.vote} date={q.date} replies={q.replies} />
                                             )) :
                                                 (<div style={
@@ -454,12 +463,12 @@ export default class Reviews extends Component {
 
                                                     <img src={questions_logo} width="30%" height="30%"></img>
 
-                                                    <p style={{ textAlign: "centre" }}> { lang ? "This place has no questions asked yet. " : "لا يوجد اسئلة حتى الان "} </p>
+                                                    <p style={{ textAlign: "centre" }}> {lang ? "This place has no questions asked yet. " : "لا يوجد اسئلة حتى الان "} </p>
                                                 </div>)
                                             }
                                         </div>) :
                                         (<div>
-                                            {(reviews && reviews.length !== 0 ) ? (reviews).map((r) => (
+                                            {(reviews && reviews.length !== 0) ? (reviews).map((r) => (
                                                 <Review lang={this.state.lang} onVoteChange={(id, votes, isQ) => { this.handleVoteChange(id, votes, isQ) }}
                                                     title={r.title} vote={r.vote}
                                                     body={r.body} _id={r._id} cleannes={r.cleanRating}
@@ -479,7 +488,7 @@ export default class Reviews extends Component {
 
                                                     <img src={rates_logo} width="30%" height="30%"></img>
 
-                                                    <p style={{ textAlign: "centre" }}> { lang ? "This place has no ratings yet." : "لا يوجد تقييمات حتى الان "} </p>
+                                                    <p style={{ textAlign: "centre" }}> {lang ? "This place has no ratings yet." : "لا يوجد تقييمات حتى الان "} </p>
                                                 </div>)
                                             }
                                         </div>)}

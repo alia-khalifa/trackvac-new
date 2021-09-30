@@ -37,46 +37,64 @@ export default class Review extends Component {
     }
     async handleUpvote() {
         const { upVoted, downVoted, vote } = this.state
-        await api.updateVote({ vote: vote + 1 }, this.state._id).then(() => {
-            if (!downVoted && !upVoted) {
+        if (!downVoted && !upVoted) {
+            await api.updateVote({ vote: vote + 1 }, this.state._id).then(() => {
 
                 this.setState({
                     vote: vote + 1,
                     upVoted: true
                 })
+                this.props.onVoteChange(this.props._id, this.state.vote, false)
 
-            } else if (downVoted) {
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
+            });
+        } else if (downVoted) {
+            await api.updateVote({ vote: vote + 1 }, this.state._id).then(() => {
 
                 this.setState({
                     vote: vote + 1,
-                    downVoted: false
+                    downVoted: true
                 })
-            }
-            this.props.onVoteChange(this.props._id, this.state.vote, false)
-        }).catch(e => {
-            console.log('There has been a problem with your fetch operation: ' + e.message);
-        });
+                this.props.onVoteChange(this.props._id, this.state.vote, false)
+
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
+            });
+        }
+
     }
 
 
     async handleDownvote() {
         const { upVoted, downVoted, vote } = this.state
-        await api.updateVote({ vote: vote - 1 }, this.state._id).then(() => {
-            if (!upVoted && !downVoted) {
+
+        if (!upVoted && !downVoted) {
+            await api.updateVote({ vote: vote - 1 }, this.state._id).then(() => {
+
                 this.setState({
                     vote: vote - 1,
                     downVoted: true
                 })
-            } else if (upVoted) {
+                this.props.onVoteChange(this.props._id, this.state.vote, false)
+
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
+            });
+        } else if (upVoted) {
+            await api.updateVote({ vote: vote - 1 }, this.state._id).then(() => {
+
                 this.setState({
                     vote: vote - 1,
                     upVoted: false
                 })
-            }
-            this.props.onVoteChange(this.props._id, this.state.vote, false)
-        }).catch(e => {
-            console.log('There has been a problem with your fetch operation: ' + e.message);
-        });
+                this.props.onVoteChange(this.props._id, this.state.vote, false)
+
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
+            });
+        }
+
     }
     render() {
         const { vote, lang } = this.props
@@ -107,16 +125,16 @@ export default class Review extends Component {
                 </div>
 
                 <Modal
-                    size="lg"
+                    size="sm"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
                     show={this.state.show} onHide={this.handleClose.bind(this)} animation={false}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Review reported successfully</Modal.Title>
+                        {lang ? "Review reported successfully" : "تم الابلاغ بنجاح"}
                     </Modal.Header>
                     <Modal.Body>
 
-                        <h3 style={{ textTransform: 'lowercase' }}>Thank you for reporting ! , we will look into it as soon as possible.</h3>
+                        <h3 style={{ textTransform: 'lowercase' }}>{lang ? "Thank you for reporting ! , we will look into it as soon as possible." : "شكرا على الإبلاغ! ، سوف ننظر في الأمر في أقرب وقت ممكن."}</h3>
 
                     </Modal.Body>
 

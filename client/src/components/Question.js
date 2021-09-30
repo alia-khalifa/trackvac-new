@@ -115,46 +115,57 @@ export default class Question extends Component {
 
     async handleUpvote() {
         const { upVoted, downVoted, vote } = this.state
-        await api.updateVoteQuestion({ vote: vote + 1 }, this.state._id).then(() => {
-            if (!downVoted && !upVoted) {
-
+        if (!downVoted && !upVoted) {
+            await api.updateVoteQuestion({ vote: vote + 1 }, this.state._id).then(() => {
                 this.setState({
                     vote: vote + 1,
                     upVoted: true
                 })
-
-            } else if (downVoted) {
-
+                this.props.onVoteChange(this.props._id, this.state.vote, true)
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
+            });
+        } else if (downVoted) {
+            await api.updateVoteQuestion({ vote: vote + 1 }, this.state._id).then(() => {
                 this.setState({
                     vote: vote + 1,
                     downVoted: false
                 })
-            }
-            this.props.onVoteChange(this.props._id, this.state.vote, true)
-        }).catch(e => {
-            console.log('There has been a problem with your fetch operation: ' + e.message);
-        });
+                this.props.onVoteChange(this.props._id, this.state.vote, true)
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
+            });
+        }
+
+
     }
 
 
     async handleDownvote() {
         const { upVoted, downVoted, vote } = this.state
-        await api.updateVoteQuestion({ vote: vote - 1 }, this.state._id).then(() => {
-            if (!upVoted && !downVoted) {
+        if (!upVoted && !downVoted) {
+            await api.updateVoteQuestion({ vote: vote - 1 }, this.state._id).then(() => {
                 this.setState({
                     vote: vote - 1,
                     downVoted: true
                 })
-            } else if (upVoted) {
+                this.props.onVoteChange(this.props._id, this.state.vote, true)
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
+            });
+        } else if (upVoted) {
+            await api.updateVoteQuestion({ vote: vote - 1 }, this.state._id).then(() => {
                 this.setState({
                     vote: vote - 1,
                     upVoted: false
                 })
-            }
-            this.props.onVoteChange(this.props._id, this.state.vote, true)
-        }).catch(e => {
-            console.log('There has been a problem with your fetch operation: ' + e.message);
-        });
+                this.props.onVoteChange(this.props._id, this.state.vote, true)
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
+            });
+        }
+
+
     }
 
 
@@ -179,7 +190,7 @@ export default class Question extends Component {
                     <p >{this.props.date}</p>
                     <div style={{ display: "flex", gap: "25px", color: '#1687A7' }}>
                         <div onClick={replies.length !== 0 ? this.handleShowReplies.bind(this) : ''} className="reply-button">
-                            <p style={{ color: replies.length !== 0 ? '#1687A7' : 'gray', cursor: replies.length !== 0 ? 'pointer' : 'default' }}>{lang ? "Replies" : "الردود"} ({replies.length})</p>
+                            <p style={{ color: replies.length !== 0 ? '#1687A7' : 'gray', cursor: replies.length !== 0 ? 'pointer' : 'default' }}>{lang ? "Replies " : "الردود "} ({replies.length})</p>
                         </div>
                         <div style={{ color: '#1687A7' }} onClick={this.handleShow.bind(this)} className="reply-button" >
                             <ReplyIcon />
@@ -196,7 +207,7 @@ export default class Question extends Component {
                     centered
                     show={this.state.show} onHide={this.handleClose.bind(this)} animation={false}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Add reply</Modal.Title>
+                        <Modal.Title>{lang ? "Add reply" : "أضف رد"}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
 
