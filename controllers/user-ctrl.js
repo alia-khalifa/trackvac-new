@@ -2,6 +2,9 @@ const User = require('../models/user');
 
 validateUser = async (req, res) => {
     try {
+        if (req.session.isVac) {
+            return next();
+        }
         const { vacID, nationalID } = req.body;
         if (!vacID || !nationalID) {
             return res.status(400).send({
@@ -12,6 +15,7 @@ validateUser = async (req, res) => {
         const user = await User.findOne({ vacID, nationalID });
 
         if (user.firstDose) {
+            req.session.isVac = true;
             return res.send({
                 success: true,
                 message: 'Can add review',
