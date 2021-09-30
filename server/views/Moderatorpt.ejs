@@ -934,7 +934,7 @@
 
                             for (let i = 0; i < suggestedPlaces.length; i++) {
                                 const tmpOpt = document.createElement('option');
-                                tmpOpt.setAttribute('value', `${suggestedPlaces[i].id}`);
+                                tmpOpt.setAttribute('value', `${suggestedPlaces[i]._id}`);
                                 tmpOpt.innerHTML = suggestedPlaces[i].name;
                                 reqSec.appendChild(tmpOpt);
                             }
@@ -996,7 +996,7 @@
                                 btn.setAttribute('type', 'submit');
                                 btn.setAttribute('class', 'button1');
                                 btn.setAttribute('onClick', 'deleteSelf(this)');
-                                btn.setAttribute('id', `http://localhost:3000/trackvac-api/admin/place/${suggestedPlaces[i].id}?_method=DELETE`)
+                                btn.setAttribute('id', `http://localhost:3000/trackvac-api/admin/place/${suggestedPlaces[i]._id}?_method=DELETE`)
                                 btn.innerHTML = 'Delete Center';
 
                                 tmpDiv_3.appendChild(image);

@@ -309,7 +309,7 @@
 
             for (let i = 0; i < suggestedPlaces.length; i++) {
               const tmpOpt = document.createElement('option');
-              tmpOpt.setAttribute('value', `${suggestedPlaces[i].id}`);
+              tmpOpt.setAttribute('value', `${suggestedPlaces[i]._id}`);
               tmpOpt.innerHTML = suggestedPlaces[i].name;
               reqSec.appendChild(tmpOpt);
             }

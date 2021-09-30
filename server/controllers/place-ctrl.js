@@ -41,7 +41,7 @@ placesArray = async (req, res) => {
 
     for (let i = 0; i < allPlaces.length; i++) {
         const tmpPlace = {
-            id: allPlaces[i]._id,
+            _id: allPlaces[i]._id,
             name: allPlaces[i].name
         }
         placesArr.push(tmpPlace);
