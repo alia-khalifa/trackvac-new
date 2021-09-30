@@ -265,7 +265,6 @@
                         <div class="col-md-10" style="margin-left: 2.5rem;">
                           <div class="testimonials-carousel">
                             <% for(placeInd in homeReturn) {%>
-
                               <!--Start Testimonial item #1-->
                               <div class="items">
                                 <div class="title-box text-center white">
@@ -273,7 +272,6 @@
                                     <%= homeReturn[placeInd].cityName%>
                                   </h2>
                                 </div>
-
                                 <div class="card mb-3">
                                   <!--Google map-->
                                   <div id="map-container-google-12" class="z-depth-1-half map-container-7"
@@ -296,7 +294,6 @@
                                   </div>
                                 </div>
                               </div>
-
                               <% } %>
                           </div>
                         </div>
@@ -321,7 +318,6 @@
                         <div class="col-md-10" style="margin-left: 2.5rem;">
                           <div class="testimonials-carousel">
                             <% for(placeInd in homeReturn) {%>
-
                               <!--Start Testimonial item #1-->
                               <div class="items">
                                 <div class="title-box text-center white">
@@ -329,7 +325,6 @@
                                     <%= homeReturn[placeInd].cityName%>
                                   </h2>
                                 </div>
-
                                 <div class="card mb-3">
                                   <!--Google map-->
                                   <div id="map-container-google-12" class="z-depth-1-half map-container-7"
@@ -352,7 +347,6 @@
                                   </div>
                                 </div>
                               </div>
-
                               <% } %>
                           </div>
                         </div>
@@ -377,7 +371,6 @@
                         <div class="col-md-10" style="margin-left: 2.5rem;">
                           <div class="testimonials-carousel">
                             <% for(placeInd in homeReturn) {%>
-
                               <!--Start Testimonial item #1-->
                               <div class="items">
                                 <div class="title-box text-center white">
@@ -385,7 +378,6 @@
                                     <%= homeReturn[placeInd].cityName%>
                                   </h2>
                                 </div>
-
                                 <div class="card mb-3">
                                   <!--Google map-->
                                   <div id="map-container-google-12" class="z-depth-1-half map-container-7"
@@ -398,7 +390,7 @@
                                       <%= homeReturn[placeInd].topService.placeName %>
                                     </h5>
                                     <p class="card-text" style="font-size: 25px;color: goldenrod;">
-                                      <% for(let i=0xi;i<homeReturn[placeInd].topService.serviceRate;i++){%>
+                                      <% for(let i=0;i<homeReturn[placeInd].topService.serviceRate;i++){%>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <% } %>
                                           <% for(let i=homeReturn[placeInd].topService.serviceRate;i<5;i++){%>
@@ -408,7 +400,6 @@
                                   </div>
                                 </div>
                               </div>
-
                               <% } %>
                           </div>
                         </div>
@@ -846,10 +837,9 @@
   </footer>
   <!--End Footer-->
 
-  <a href="" class="scrollup" id="tooltip" title="Add Review."> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+  <a href="http://localhost:8000/reviews" class="scrollup" id="tooltip" title="Add Review."> <i
+      class="fa fa-pencil-square-o" aria-hidden="true"></i>
     </i> </a>
-  <a href="" class="scrollup" id="tooltip" title="Share Website." style="margin-bottom: 70px;"><i
-      class="fa fa-share-alt" aria-hidden="true"></i></i></a>
 
 
 
