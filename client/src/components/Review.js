@@ -20,7 +20,7 @@ export default class Review extends Component {
 
     async handleReport() {
 
-        await api.updateReport(this.props.id).then(() => { }).catch(e => {
+        await api.updateReport(this.props._id).then(() => { }).catch(e => {
             console.log('There has been a problem with your fetch operation: ' + e.message);
         });
         this.handleShow();

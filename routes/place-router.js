@@ -4,7 +4,8 @@ const PlaceCtrl = require('../controllers/place-ctrl');
 
 const router = express.Router();
 
-router.get('/places/:cityID', catchAsync(PlaceCtrl.getPlaces))
+router.get('/place/placesarray', catchAsync(PlaceCtrl.placesArray))
+    .get('/places/:cityID', catchAsync(PlaceCtrl.getPlaces))
     .get('/place/:placeID', catchAsync(PlaceCtrl.getPlace))
     .put('/place/:placeID', catchAsync(PlaceCtrl.editPlace));
 

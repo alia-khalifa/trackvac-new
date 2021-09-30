@@ -34,6 +34,20 @@ getPlace = async (req, res) => {
     }
 }
 
+placesArray = async (req, res) => {
+
+    const allPlaces = await Place.find();
+    const placesArr = [];
+
+    for (let i = 0; i < allPlaces.length; i++) {
+        const tmpPlace = {
+            id: allPlaces[i]._id,
+            name: allPlaces[i].name
+        }
+        placesArr.push(tmpPlace);
+    }
+    return res.send(placesArr);
+}
 
 createPlace = async (req, res) => {
     try {
@@ -122,6 +136,7 @@ editPlace = async (req, res) => {
 }
 
 module.exports = {
+    placesArray,
     getPlaces,
     getPlace,
     createPlace,

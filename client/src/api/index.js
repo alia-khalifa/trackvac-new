@@ -8,6 +8,7 @@ export const initHome = () => api.get(`/home`)
 //reviews 
 export const getAllCities = () => api.get(`/reviews`)
 export const getAllDistricts = (cityID) => api.get(`/reviews/${cityID}`)
+export const getPlacesArray = () => api.get(`/place/placesarray`)
 export const getAllReviews = (cityID, placeID) => api.get(`/reviews/${cityID}/${placeID}`)
 export const addReview = (review, placeID) => api.post(`/reviews/${placeID}`, review)
 export const updateVote = (vote, reviewID) => api.put(`/reviews/vote/${reviewID}`, vote)
@@ -41,6 +42,7 @@ const apis = {
     initHome,
     getAllCities,
     getAllDistricts,
+    getPlacesArray,
     getAllReviews,
     addReview,
     updateVote,

@@ -217,45 +217,49 @@ export default class Reviews extends Component {
 
     async handleGovChange(event, govObj) {
         this.setState({
-            governorate: govObj.id,
+            governorate: govObj ? govObj.id : '',
             govInputValue: govObj
         });
-        await api.getAllDistricts(govObj.id).then(districtArr => {
+        if (govObj) {
+            await api.getAllDistricts(govObj.id).then(districtArr => {
 
-            this.setState({
-                reviews: [],
-                districts: districtArr.data,
-                district: ""
+                this.setState({
+                    reviews: [],
+                    districts: districtArr.data,
+                    district: ""
+                });
+
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
             });
-
-        }).catch(e => {
-            console.log('There has been a problem with your fetch operation: ' + e.message);
-        });
+        }
 
     }
     async handleDistrictChange(event, district) {
         this.setState({
-            district: district.id,
+            district: district ? district.id : '',
             disInputValue: district
         })
-        await api.getAllReviews(this.state.governorate, district.id).then(reviewsArr => {
+        if (district) {
+            await api.getAllReviews(this.state.governorate, district.id).then(reviewsArr => {
 
-            this.setState({
-                reviews: reviewsArr.data,
+                this.setState({
+                    reviews: reviewsArr.data,
+                });
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
             });
-        }).catch(e => {
-            console.log('There has been a problem with your fetch operation: ' + e.message);
-        });
-        await api.getAllQuestions(this.state.governorate, district.id).then(questionsArr => {
-            this.setState({
-                district: district,
-                questions: questionsArr.data
+            await api.getAllQuestions(this.state.governorate, district.id).then(questionsArr => {
+                this.setState({
+                    district: district,
+                    questions: questionsArr.data
 
+                });
+            }).catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
             });
-        }).catch(e => {
-            console.log('There has been a problem with your fetch operation: ' + e.message);
-        });
-        this.setState({ district: district });
+            this.setState({ district: district });
+        }
     }
 
 
@@ -332,6 +336,15 @@ export default class Reviews extends Component {
         await api.getAllCities().then(citiesArr => {
             this.setState({
                 cities: citiesArr.data,
+                isLoading: false,
+            })
+        }).catch(e => {
+            console.log('There has been a problem with your fetch operation: ' + e.message);
+        });
+
+        await api.getPlacesArray().then(placesArr => {
+            this.setState({
+                districts: placesArr.data,
                 isLoading: false,
             })
         }).catch(e => {
