@@ -18,7 +18,7 @@ getReviews = async (req, res) => {
 
 createReview = async (req, res) => {
     try {
-        const { placeID } = req.params
+        const { placeID } = req.params;
         const { title, body, cleanRating, speedRating, serviceRating, rate } = req.body;
         if (!title || !body || !serviceRating) {
             return res.send({

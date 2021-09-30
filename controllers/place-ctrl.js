@@ -6,6 +6,7 @@ const place = require('../models/place');
 
 getPlaces = async (req, res) => {
     try {
+
         const { cityID } = req.params;
         const city = await City.findById(cityID);
 

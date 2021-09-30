@@ -2,12 +2,9 @@ const User = require('../models/user');
 
 validateUser = async (req, res) => {
     try {
-        if (req.session.isVaccine) {
-            return next();
-        }
         const { vacID, nationalID } = req.body;
         if (!vacID || !nationalID) {
-            return res.send({
+            return res.status(400).send({
                 success: false,
                 message: 'You must provide vacID and nationalID',
             });
@@ -15,7 +12,6 @@ validateUser = async (req, res) => {
         const user = await User.findOne({ vacID, nationalID });
 
         if (user.firstDose) {
-            req.session.isVaccine = true;
             return res.send({
                 success: true,
                 message: 'Can add review',
@@ -29,7 +25,7 @@ validateUser = async (req, res) => {
         }
     }
     catch (e) {
-        return res.send({
+        return res.status(400).send({
             valid: false,
             error: 'Error in user validation',
         });
