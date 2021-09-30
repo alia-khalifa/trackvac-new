@@ -68,7 +68,7 @@ export default class Reviews extends Component {
         disInputValue: "",
         govText: "",
         disText: "",
-        lang: true
+        lang: false
 
     }
     handleTitleChange(event) {
@@ -439,7 +439,7 @@ export default class Reviews extends Component {
                                 <div className="list" >
                                     {(!this.state.isReview) ?
                                         (<div>
-                                            {questions ? (questions).map((q) => (
+                                            {(questions && questions.length !== 0 ) ? (questions).map((q) => (
                                                 <Question lang={this.state.lang} onVoteChange={(id, votes, isQ) => { this.handleVoteChange(id, votes, isQ) }} body={q.body} _id={q._id} vote={q.vote} date={q.date} replies={q.replies} />
                                             )) :
                                                 (<div style={
@@ -454,12 +454,12 @@ export default class Reviews extends Component {
 
                                                     <img src={questions_logo} width="30%" height="30%"></img>
 
-                                                    <p style={{ textAlign: "centre" }}> This place has no questions asked yet. </p>
+                                                    <p style={{ textAlign: "centre" }}> { lang ? "This place has no questions asked yet. " : "لا يوجد اسئلة حتى الان "} </p>
                                                 </div>)
                                             }
                                         </div>) :
                                         (<div>
-                                            {reviews ? (reviews).map((r) => (
+                                            {(reviews && reviews.length !== 0 ) ? (reviews).map((r) => (
                                                 <Review lang={this.state.lang} onVoteChange={(id, votes, isQ) => { this.handleVoteChange(id, votes, isQ) }}
                                                     title={r.title} vote={r.vote}
                                                     body={r.body} _id={r._id} cleannes={r.cleanRating}
@@ -479,7 +479,7 @@ export default class Reviews extends Component {
 
                                                     <img src={rates_logo} width="30%" height="30%"></img>
 
-                                                    <p style={{ textAlign: "centre" }}> This place has no ratings yet. </p>
+                                                    <p style={{ textAlign: "centre" }}> { lang ? "This place has no ratings yet." : "لا يوجد تقييمات حتى الان "} </p>
                                                 </div>)
                                             }
                                         </div>)}

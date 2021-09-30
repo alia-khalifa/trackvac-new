@@ -16,6 +16,7 @@ const questionRouter = require('./routes/questions-router');
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const apiPort = 3000;
+baseUrl = '/trackvac-api'
 const app = express();
 
 app.engine('ejs', ejsMate);
@@ -39,11 +40,11 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.use('/trackvac-api', homeRouter)
-    .use('/trackvac-api', reviewsRouter)
-    .use('/trackvac-api', questionRouter)
-    .use('/trackvac-api', adminRouter)
-    .use('/trackvac-api', placeRouter)
+app.use(baseUrl, homeRouter)
+    .use(baseUrl, reviewsRouter)
+    .use(baseUrl, questionRouter)
+    .use(baseUrl, adminRouter)
+    .use(baseUrl, placeRouter)
     .get('*', (req, res) => {
         res.send('Not Found').status(404);
     });
