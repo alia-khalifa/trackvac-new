@@ -6,6 +6,7 @@ You should install mongo DB and get it to run
 2) Open server folder and npm install
 
 ***nodemon package must be installed globally***
+
 #############################################
 
 To get the fake DB run in this order:
@@ -17,6 +18,7 @@ To get the fake DB run in this order:
 5) node fakeReplies.js
 6) node fakeUserCreator.js
 7) node fakeAdminCreator.js
+
 #############################################
 
 To get the server and react run:
