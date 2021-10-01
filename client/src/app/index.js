@@ -6,25 +6,29 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import Moderator from '../pages/Moderator';
 import ModRevs from '../pages/ModRevs';
 function App() {
   return (
     <div>
-
       <Router>
         <div className="App">
-          {/* <Reviews/> */}
-          <Route path="/" exact component={HomeTwo} />
-          <Route path="/moderator" exact component={Moderator} />
-          <Route path="/moderator/reviews" component={ModRevs} />
-          <Route path="/moderator/questions" component={ModRevs} />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return (
+
+                <Redirect to="/reviews" />
+              )
+            }}
+          />
           <Route path="/questions" component={Reviews} />
           <Route path="/reviews" component={Reviews} />
         </div>
-
       </Router>
     </div>
   );
