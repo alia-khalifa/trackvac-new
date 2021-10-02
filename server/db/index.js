@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+dotenv.config({ path: __dirname + '/.env' });
 
-const dbUrl = 'mongodb://localhost:27017/trackvac';
+const dbUrl = 'mongodb+srv://ahmadabuzaiid:atlasdatapassword@trackvac.zczmv.mongodb.net/trackvac?retryWrites=true&w=majority';
 
 const db = mongoose.connection;
 
