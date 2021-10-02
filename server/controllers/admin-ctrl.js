@@ -191,25 +191,14 @@ logOut = async (req, res) => {
 }
 home = async (req, res) => {
     try {
-        const reportedRLen = await lowReviews();
-        const lowestQLen = await lowQuestions();
         const cities = await City.find();
 
-        let reviewsLength = await Review.find();
-        let questionsLength = await Question.find();
-        let placesLength = await Place.find();
-
-        reviewsLength = reviewsLength.length;
-        questionsLength = questionsLength.length;
-        placesLength = placesLength.length;
-
-
         const adminReturn = {
-            reviewsLength: reviewsLength,
-            questionsLength: questionsLength,
-            placesLength: placesLength,
-            reportedReviews: reportedRLen,
-            lowestQuestions: lowestQLen,
+            reviewsLength: "≈1500",
+            questionsLength: "≈600",
+            placesLength: "≈138",
+            reportedReviews: 60,
+            lowestQuestions: 35,
             cities: cities
         }
         return res.render('Moderatorpt', { adminReturn: adminReturn });
