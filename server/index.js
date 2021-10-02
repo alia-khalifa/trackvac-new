@@ -15,7 +15,7 @@ const questionRouter = require('./routes/questions-router');
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-const apiPort = 3000;
+const apiPort = 5000;
 baseUrl = '/trackvac-api'
 const app = express();
 

@@ -13,12 +13,12 @@ export default class NavBar extends Component {
 
             //     {/*Start Logo */}
             //     <div className="logo-nav">
-            //     <a href="http://localhost:3000/trackvac-api/home">
+            //     <a href="http://139.59.215.224:5000/trackvac-api/home">
             //             <img src="../images/white png logo.png" alt="TrackVac logo" width="150rem" />
             //         </a>
             //     </div>
             //     {/*End Logo */}
-            //   <a href="http://localhost:3000/trackvac-api/home">
+            //   <a href="http://139.59.215.224:5000/trackvac-api/home">
             //       Home
             //   </a>
 
@@ -28,12 +28,12 @@ export default class NavBar extends Component {
             // </div>
             <div className="topnav">
                 <div className="logo-nav">
-                    <a href="http://localhost:3000/trackvac-api/home">
-                        <img href="http://localhost:3000/trackvac-api/home" src={white_logo} alt="TrackVac logo" width="150rem" />
+                    <a href="http://139.59.215.224:5000/trackvac-api/home">
+                        <img href="http://139.59.215.224:5000/trackvac-api/home" src={white_logo} alt="TrackVac logo" width="150rem" />
                     </a>
                 </div>
                 <div className="links">
-                    <a href="http://localhost:3000/trackvac-api/home">
+                    <a href="http://139.59.215.224:5000/trackvac-api/home">
                         Home
                     </a>
                     <a className="active" href="/reviews">Reviews</a>
