@@ -111,7 +111,7 @@
 
 
 	 $('.related-project-carousel').owlCarousel({
-	 autoPlay:3000,
+	 autoPlay:5000,
 	 slideSpeed: 200,
 	  items : 4,
 	  itemsDesktop : [1199,4],
@@ -223,7 +223,7 @@
 	"<i class='fa fa-angle-right'></i>"
 	],   
 
-	autoPlay: 3000,
+	autoPlay: 5000,
 	itemsDesktop : [1169,3],
 	itemsDesktopSmall : [1024,3],
 	itemsTablet : [640,2],
@@ -291,7 +291,7 @@ $('.popup-image').magnificPopup({
 
 
 	 $('.clients-carousel').owlCarousel({
-	 autoPlay:3000,
+	 autoPlay:5000,
 	 slideSpeed: 200,
 	  items : 6,
 	  itemsDesktop : [1199,4],
