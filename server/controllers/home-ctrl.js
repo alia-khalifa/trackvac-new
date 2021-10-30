@@ -137,7 +137,7 @@ rendAbout = async (req, res) => {
 
 redirectHome = async (req, res) => {
     try {
-        return res.redirect('http://localhost:3000/trackvac-api/home/en');
+        return res.redirect('http://139.59.215.224:3000/trackvac-api/home/en');
     }
     catch (e) {
         return res.json({
@@ -149,7 +149,7 @@ redirectHome = async (req, res) => {
 
 redirectAbout = async (req, res) => {
     try {
-        return res.redirect('http://localhost:3000/trackvac-api/about/en');
+        return res.redirect('http://139.59.215.224:3000/trackvac-api/about/en');
     }
     catch (e) {
         return res.json({

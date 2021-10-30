@@ -22,7 +22,7 @@ validateLogin = async (req, res, next) => {
             return next();
         }
         else {
-            return res.redirect('http://localhost:3000/trackvac-api/admin/login');
+            return res.redirect('http://139.59.215.224:3000/trackvac-api/admin/login');
         }
     }
     catch (e) {
@@ -37,19 +37,19 @@ validateLogin = async (req, res, next) => {
 validateAdmin = async (req, res, next) => {
     try {
         if (req.session.isLogin) {
-            return res.redirect('http://localhost:3000/trackvac-api/admin/home');
+            return res.redirect('http://139.59.215.224:3000/trackvac-api/admin/home');
         }
         const { userName, password } = req.body;
         if (!userName || !password) {
-            return res.redirect('http://localhost:3000/trackvac-api/admin/login');
+            return res.redirect('http://139.59.215.224:3000/trackvac-api/admin/login');
         }
         const admin = await Admin.findOne({ userName, password });
         if (admin) {
             req.session.isLogin = true;
             req.flash('success', 'Welcome back!');
-            return res.redirect('http://localhost:3000/trackvac-api/admin/home');
+            return res.redirect('http://139.59.215.224:3000/trackvac-api/admin/home');
         }
-        return res.redirect('http://localhost:3000/trackvac-api/admin/login');
+        return res.redirect('http://139.59.215.224:3000/trackvac-api/admin/login');
     }
     catch (e) {
         req.flash('error', 'Error in admin validation');
@@ -76,12 +76,12 @@ addadmin = async (req, res) => {
     try {
         const { userName, password } = req.body;
         if (!userName || !password) {
-            return res.redirect('http://localhost:3000/trackvac-api/admin/home');
+            return res.redirect('http://139.59.215.224:3000/trackvac-api/admin/home');
         }
         const admin = new Admin({ userName, password });
         await admin.save();
 
-        return res.redirect('http://localhost:3000/trackvac-api/admin/home');
+        return res.redirect('http://139.59.215.224:3000/trackvac-api/admin/home');
     }
     catch (e) {
         return res.send({
@@ -180,7 +180,7 @@ lowQuestions = async () => {
 logOut = async (req, res) => {
     try {
         req.session.destroy();
-        return res.redirect('http://localhost:3000/trackvac-api/admin/login');
+        return res.redirect('http://139.59.215.224:3000/trackvac-api/admin/login');
     }
     catch (e) {
         return res.send({

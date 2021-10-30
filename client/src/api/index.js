@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000/trackvac-api',
+    baseURL: 'http://139.59.215.224:3000/trackvac-api',
 })
 // home 
 export const initHome = () => api.get(`/home`)

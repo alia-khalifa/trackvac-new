@@ -2,7 +2,7 @@
   "name": "reviews",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://localhost:8000/trackvac-api/reviews",
+  "homepage": "http://139.59.215.224:8000/trackvac-api/reviews",
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
