@@ -111,7 +111,7 @@
 
 
 	 $('.related-project-carousel').owlCarousel({
-	 autoPlay:3000,
+	 autoPlay:5000,
 	 slideSpeed: 200,
 	  items : 4,
 	  itemsDesktop : [1199,4],
@@ -291,7 +291,7 @@ $('.popup-image').magnificPopup({
 
 
 	 $('.clients-carousel').owlCarousel({
-	 autoPlay:3000,
+	 autoPlay:5000,
 	 slideSpeed: 200,
 	  items : 6,
 	  itemsDesktop : [1199,4],

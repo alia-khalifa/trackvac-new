@@ -8,12 +8,12 @@ export default class NavBar extends Component {
         return (
             <div className="topnav">
                 <div className="logo-nav">
-                    <a href="http://139.59.215.224:3000/trackvac-api/home">
-                        <img href="http://139.59.215.224:3000/trackvac-api/home" src={white_logo} alt="TrackVac logo" width="150rem" />
+                    <a href="http://139.59.215.224:5000/trackvac-api/home">
+                        <img href="http://139.59.215.224:5000/trackvac-api/home" src={white_logo} alt="TrackVac logo" width="150rem" />
                     </a>
                 </div>
                 <div className="links">
-                    <a href="http://139.59.215.224:3000/trackvac-api/home">
+                    <a href="http://139.59.215.224:5000/trackvac-api/home">
                         Home
                     </a>
                     <a className="active" href="/trackvac-api/reviews">Reviews</a>
