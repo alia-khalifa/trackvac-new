@@ -18,15 +18,9 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="fa fa-bars"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button> -->
             <!--Start Logo -->
             <div class="logo-nav">
-              <a href="http://139.59.215.224:5000/trackvac-api/home">
+              <a href="http://localhost:3000/trackvac-api/home">
                 <img src="/images/white png logo.png" alt="TrackVac logo" width="150rem" />
               </a>
             </div>
@@ -35,11 +29,11 @@
             <div id="main-menu" class="collapse scroll navbar-right">
               <ul class="nav">
 
-                <li> <a href="http://139.59.215.224:5000/trackvac-api/admin/home">Home</a> </li>
+                <li> <a href="http://localhost:3000/trackvac-api/admin/home">Home</a> </li>
 
-                <li> <a href="http://139.59.215.224:5000/trackvac-api/admin/reviews">Reviews</a> </li>
+                <li> <a href="http://localhost:3000/trackvac-api/admin/reviews">Reviews</a> </li>
 
-                <li class="active"> <a href="http://139.59.215.224:5000/trackvac-api/admin/questions">Questions</a> </li>
+                <li class="active"> <a href="http://localhost:3000/trackvac-api/admin/questions">Questions</a> </li>
 
               </ul>
             </div><!-- end main-menu -->
@@ -108,7 +102,7 @@
 
       async function reqPlaces(event) {
         const reqPlaces = new XMLHttpRequest();
-        const url = `http://139.59.215.224:5000/trackvac-api/questions/${event.target.value}`;
+        const url = `http://localhost:3000/trackvac-api/questions/${event.target.value}`;
         reqPlaces.onreadystatechange = myfunction;
         reqPlaces.open("GET", url, true);
         reqPlaces.send(null);
@@ -156,7 +150,7 @@
         const mainDiv = document.getElementById('wrapperReviews');
 
         const req = new XMLHttpRequest();
-        const url = `http://139.59.215.224:5000/trackvac-api/questions/cityID/${event.target.value}`;
+        const url = `http://localhost:3000/trackvac-api/questions/cityID/${event.target.value}`;
         req.onreadystatechange = myfunction;
         req.open("GET", url, true);
         req.send(null);
@@ -197,7 +191,7 @@
               const btn = document.createElement('button');
               btn.setAttribute('class', 'btn');
               btn.className += ' btn-danger';
-              btn.setAttribute('id', `http://139.59.215.224:5000/trackvac-api//admin/question/${res[i]._id}?_method=DELETE`)
+              btn.setAttribute('id', `http://localhost:3000/trackvac-api//admin/question/${res[i]._id}?_method=DELETE`)
               btn.setAttribute('onClick', 'deleteSelf(this)');
               btn.innerHTML = "Delete";
 
@@ -249,7 +243,7 @@
         event.preventDefault();
 
         const searchPlaces = new XMLHttpRequest();
-        const url = 'http://139.59.215.224:5000/trackvac-api/admin/placesarr';
+        const url = 'http://localhost:3000/trackvac-api/admin/placesarr';
         searchPlaces.onreadystatechange = myfunction;
         searchPlaces.open("GET", url, true);
         searchPlaces.send(null);

@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 import Question from './Question'
 export default class Replies extends Component {
     state = {
         show: this.props.show
     }
-    
+
     handleClose() {
         this.setState({
             show: false
         })
     }
     render() {
-        const {replies , show } = this.props.replies
+        const { replies } = this.props.replies
         return (
             <div>
                 <Modal

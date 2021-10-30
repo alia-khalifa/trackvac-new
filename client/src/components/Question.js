@@ -2,14 +2,11 @@ import React, { Component } from 'react'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ReplyIcon from '@mui/icons-material/Reply';
-import Replies from './Replies';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import verify_logo from '../components/verify.svg';
 import Reply from './Reply';
 import api from '../api';
-import FloatingLabel from 'react-bootstrap/FloatingLabel'
 export default class Question extends Component {
     state = {
         show: false,

@@ -2,11 +2,8 @@ import React, { Component } from 'react'
 import { Rating } from "@material-ui/lab";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import Button from 'react-bootstrap/Button'
 import api from '../api';
 import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
-import { display } from '@mui/system';
 export default class Review extends Component {
 
     state = {

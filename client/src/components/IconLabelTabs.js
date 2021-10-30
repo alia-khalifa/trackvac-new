@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 
 export default function IconLabelTabs(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState((window.location.pathname === "/reviews") ? 0 : 1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

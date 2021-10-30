@@ -1,11 +1,4 @@
 import React, { Component } from 'react'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ReplyIcon from '@mui/icons-material/Reply';
-import Replies from './Replies';
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 export default class Reply extends Component {
     state = {
         show: false,
@@ -51,7 +44,7 @@ export default class Reply extends Component {
 
     render() {
         return (
-            <div className="review" style={{ padding: "10px 10px 0px 10px"  , display : "flex" , flexDirection : "column"}}>
+            <div className="review" style={{ padding: "10px 10px 0px 10px", display: "flex", flexDirection: "column" }}>
                 <div className="question-body" style={{ marginBottom: "5px" }} >
                     <h3> {this.props.body} </h3>
                 </div>

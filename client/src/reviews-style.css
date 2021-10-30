@@ -165,7 +165,7 @@ img {
 @media screen and (max-width: 1127px) {
   .reviews-flex-container {
     flex-direction: column; /* change the direction of the container */
-    align-items: center;
+    align-items: center ;
     gap: 10px !important;
     flex-direction: column-reverse;
     margin-top: 10px;
@@ -180,6 +180,13 @@ img {
   }
   .list-container {
     max-width: 100% !important;
+  }
+  .place-info {
+    display: flex ;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: row !important;
+    border-radius: 5px;
   }
 }
 
@@ -340,4 +347,13 @@ img {
 .lang-btn:hover {
   cursor: pointer;
   color: #ffffff;
+}
+
+.place-info {
+  display: flex ;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: column;
+  width: clamp(200px ,20% , 550px);
+  border-radius: 5px;
 }

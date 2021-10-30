@@ -12,10 +12,11 @@ const adminRouter = require('./routes/admin-router');
 const placeRouter = require('./routes/place-router');
 const reviewsRouter = require('./routes/reviews-router');
 const questionRouter = require('./routes/questions-router');
+const { getValues } = require('./controllers/home-ctrl');
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-const apiPort = 5000;
+const apiPort = 3000;
 baseUrl = '/trackvac-api'
 const app = express();
 
@@ -52,3 +53,5 @@ app.use(baseUrl, homeRouter)
 app.listen(apiPort, () => {
     console.log(`Server running on port ${apiPort}`);
 });
+
+setInterval(getValues, 120000);

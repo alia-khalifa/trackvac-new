@@ -18,7 +18,6 @@ export default class Dropdown extends Component {
             <div style={{ width: '25%' }}>
                 <label for={this.props.label}>{this.props.label}</label>
                 <Form.Select >
-                    {/* <option>Governorate</option> */}
 
                     {cities.data ? (cities.data).map((c) => (
                         <option value={c._id}> {c.name} </option>

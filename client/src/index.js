@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './app';
-import {  createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 const theme = createTheme({
   palette: {
-    primary:{
-      light: '#F6F5F5' ,
-      dark : '#276678' ,
-      contrastText : '#D3E0EA' ,
-      main: '#1687A7' 
-      
+    primary: {
+      light: '#F6F5F5',
+      dark: '#276678',
+      contrastText: '#D3E0EA',
+      main: '#1687A7'
+
 
     }
   }
@@ -18,10 +18,10 @@ const theme = createTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-  <ThemeProvider theme={theme}>
-    <App />
-  </ThemeProvider>
-    
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -39,7 +39,6 @@ export default class Review extends Component {
                                         placeholder="Review title..."
 
                                     />
-                                    {/* <Button onClick={this.handleSubmit.bind(this)} variant="mbutton">Add question</Button> */}
                                 </InputGroup>
                                 <br />
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

@@ -6,4 +6,4 @@ import NavBar from './NavBar'
 import Question from './Question'
 import IconLabelTabs from './IconLabelTabs'
 
-export { AddReview, AverageRates , Dropdown , Review , Question , IconLabelTabs , AddReview, NavBar }
+export { AddReview, AverageRates , Dropdown , Review , Question , IconLabelTabs, NavBar }

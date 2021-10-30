@@ -202,17 +202,17 @@
 
                             <li class="active"> <a href="#home">Home</a> </li>
 
-                            <li> <a href="http://139.59.215.224:5000/trackvac-api/admin/reviews">Reviews</a> </li>
+                            <li> <a href="http://localhost:3000/trackvac-api/admin/reviews">Reviews</a> </li>
 
-                            <li> <a href="http://139.59.215.224:5000/trackvac-api/admin/questions">Questions</a> </li>
+                            <li> <a href="http://localhost:3000/trackvac-api/admin/questions">Questions</a> </li>
 
                             <li> <a href="#contact">Add Medical Center</a> </li>
 
                             <li> <a href="#skills">website statistics</a> </li>
 
-                            <li> <a href="http://139.59.215.224:5000/trackvac-api/admin/addadmin">Add Admin</a> </li>
+                            <li> <a href="http://localhost:3000/trackvac-api/admin/addadmin">Add Admin</a> </li>
 
-                            <li> <a href="http://139.59.215.224:5000/trackvac-api/admin/logut">Log Out</a> </li>
+                            <li> <a href="http://localhost:3000/trackvac-api/admin/logut">Log Out</a> </li>
                         </ul>
                     </div><!-- end main-menu -->
                 </div>
@@ -233,7 +233,7 @@
                             <div class="big">
                                 Monitor Reviews</div>
                             <div class="small">to delete and Monitor Reviews </div>
-                            <a href="http://139.59.215.224:5000/trackvac-api/admin/reviews" class="middle btn btn-white">VIEW
+                            <a href="http://localhost:3000/trackvac-api/admin/reviews" class="middle btn btn-white">VIEW
                                 REVIEWS</a>
                         </div>
                     </div>
@@ -245,7 +245,7 @@
                         <div class="container">
                             <div class="big">Monitor Questions </div>
                             <div class="small">to delete and Monitor Questions </div>
-                            <a href="http://139.59.215.224:5000/trackvac-api/admin/questions"
+                            <a href="http://localhost:3000/trackvac-api/admin/questions"
                                 class=" middle btn btn-white">VIEW Questions</a>
                         </div>
                     </div>
@@ -645,7 +645,7 @@
     <script>
         async function deletePlaces(event) {
             const reqPlaces = new XMLHttpRequest();
-            const url = `http://139.59.215.224:5000/trackvac-api/reviews/${event.target.value}`;
+            const url = `http://localhost:3000/trackvac-api/reviews/${event.target.value}`;
             reqPlaces.onreadystatechange = myfunction;
             reqPlaces.open("GET", url, true);
             reqPlaces.send(null);
@@ -682,7 +682,7 @@
                         btn.setAttribute('type', 'submit');
                         btn.setAttribute('class', 'button1');
                         btn.setAttribute('onClick', 'deleteSelf(this)');
-                        btn.setAttribute('id', `http://139.59.215.224:5000/trackvac-api/admin/place/${res[i]._id}?_method=DELETE`)
+                        btn.setAttribute('id', `http://localhost:3000/trackvac-api/admin/place/${res[i]._id}?_method=DELETE`)
                         btn.innerHTML = 'Delete Center';
                         tmpDiv_3.appendChild(image);
                         tmpDiv_4.appendChild(h);
@@ -720,7 +720,7 @@
         async function updateDB(event) {
             const dropBox = document.getElementById('Place');
             const reqPlaces = new XMLHttpRequest();
-            const url = `http://139.59.215.224:5000/trackvac-api/places/${event.target.value}`;
+            const url = `http://localhost:3000/trackvac-api/places/${event.target.value}`;
             reqPlaces.onreadystatechange = myfunction;
             reqPlaces.open("GET", url, true);
             reqPlaces.send(null);
@@ -753,7 +753,7 @@
             const nameText = document.getElementById('Nametext AddM3');
             const locText = document.getElementById('Locationtext AddM3');
             const reqPlaces = new XMLHttpRequest();
-            const url = `http://139.59.215.224:5000/trackvac-api/place/${event.target.value}`;
+            const url = `http://localhost:3000/trackvac-api/place/${event.target.value}`;
             reqPlaces.onreadystatechange = myfunction;
             reqPlaces.open("GET", url, true);
             reqPlaces.send(null);
@@ -776,7 +776,7 @@
             const locText = document.getElementById('Locationtext AddM3');
             const globalPlaceID = document.getElementById('globalPlace').getAttribute('class');
             const reqPlaces = new XMLHttpRequest();
-            const url = `http://139.59.215.224:5000/trackvac-api/place/${globalPlaceID}?_method=PUT`;
+            const url = `http://localhost:3000/trackvac-api/place/${globalPlaceID}?_method=PUT`;
             reqPlaces.onreadystatechange = myfunction;
             reqPlaces.open("POST", url, true);
             reqPlaces.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -802,7 +802,7 @@
             const locText = document.getElementById('AddM12');
             const globalCityID = document.getElementById('globalCity').getAttribute('class');
             const reqPlaces = new XMLHttpRequest();
-            const url = `http://139.59.215.224:5000/trackvac-api/admin/place/${globalCityID}`;
+            const url = `http://localhost:3000/trackvac-api/admin/place/${globalCityID}`;
             reqPlaces.onreadystatechange = myfunction;
             reqPlaces.open("POST", url, true);
             reqPlaces.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -829,7 +829,7 @@
     <script>
         async function searchArr(dropBox) {
             const searchPlaces = new XMLHttpRequest();
-            const url = 'http://139.59.215.224:5000/trackvac-api/admin/placesarr';
+            const url = 'http://localhost:3000/trackvac-api/admin/placesarr';
             searchPlaces.onreadystatechange = myfunction;
             searchPlaces.open("GET", url, true);
             searchPlaces.send(null);
@@ -868,7 +868,7 @@
     <script>
         async function searchReturnDiv() {
             const searchPlaces = new XMLHttpRequest();
-            const url = 'http://139.59.215.224:5000/trackvac-api/admin/placesarr';
+            const url = 'http://localhost:3000/trackvac-api/admin/placesarr';
             searchPlaces.onreadystatechange = myfunction;
             searchPlaces.open("GET", url, true);
             searchPlaces.send(null);
@@ -904,7 +904,7 @@
                             btn.setAttribute('type', 'submit');
                             btn.setAttribute('class', 'button1');
                             btn.setAttribute('onClick', 'deleteSelf(this)');
-                            btn.setAttribute('id', `http://139.59.215.224:5000/trackvac-api/admin/place/${suggestedPlaces[i]._id}?_method=DELETE`)
+                            btn.setAttribute('id', `http://localhost:3000/trackvac-api/admin/place/${suggestedPlaces[i]._id}?_method=DELETE`)
                             btn.innerHTML = 'Delete Center';
                             tmpDiv_3.appendChild(image);
                             tmpDiv_4.appendChild(h);

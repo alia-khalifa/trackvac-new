@@ -1,11 +1,12 @@
 const db = require('../db/index');
 const City = require('../models/city');
 const Place = require('../models/place');
-const Reviews = require('../models/review');
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-statistics = async (req, res) => {
+let homeValues = [];
+
+statistics = async () => {
     try {
         const allCities = await City.find();
         const statArray = [];
@@ -57,14 +58,10 @@ statistics = async (req, res) => {
 
             statArray.push(topPlace);
         }
-
-        return res.render('index', { homeReturn: statArray });
+        return statArray;
     }
     catch (e) {
-        return res.json({
-            success: false,
-            message: 'Error in loading home page data',
-        });
+        return [];
     }
 }
 
@@ -95,4 +92,71 @@ async function statHelper(place) {
     }
 }
 
-module.exports = { statistics };
+getValues = async () => {
+    try {
+        let tmpArr = [];
+        while (tmpArr.length == 0) {
+            tmpArr = await statistics();
+        }
+        homeValues = tmpArr;
+    }
+    catch (e) {
+        return;
+    }
+}
+
+rend = async (req, res) => {
+    try {
+        if (req.params.lang == 'ar') {
+            return await res.render('index_ar.ejs', { homeReturn: homeValues });
+        }
+        return await res.render('index_en.ejs', { homeReturn: homeValues });
+    }
+    catch (e) {
+        return res.json({
+            success: false,
+            message: 'Error in loading home page data',
+        });
+    }
+}
+
+rendAbout = async (req, res) => {
+    try {
+        if (req.params.lang == 'ar') {
+            return await res.render('about_ar.ejs');
+        }
+        return await res.render('about_en.ejs');
+    }
+    catch (e) {
+        return res.json({
+            success: false,
+            message: 'Error in loading about data',
+        });
+    }
+}
+
+redirectHome = async (req, res) => {
+    try {
+        return res.redirect('http://localhost:3000/trackvac-api/home/en');
+    }
+    catch (e) {
+        return res.json({
+            success: false,
+            message: 'Error in loading home page data',
+        });
+    }
+}
+
+redirectAbout = async (req, res) => {
+    try {
+        return res.redirect('http://localhost:3000/trackvac-api/about/en');
+    }
+    catch (e) {
+        return res.json({
+            success: false,
+            message: 'Error in loading home page data',
+        });
+    }
+}
+
+module.exports = { rend, rendAbout, getValues, redirectHome, redirectAbout };
